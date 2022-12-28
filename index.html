@@ -12,6 +12,7 @@
   <title>Template three</title>
 </head>
 <body>
+  <button id="mode"></button>
   <header>
     <nav>
       <div class="container">
@@ -431,6 +432,8 @@
     </div>
   </footer>
 
+  <!-- button theme -->
+
   <script>
     const otherLink = document.querySelector('[href="#other"]')
     const popDiv = document.querySelector('.pop-other-links')
@@ -535,6 +538,29 @@
         videoSec.querySelector('#showedVideo').innerHTML = element.innerText
       })
     });
+
+    // dark and light mode
+    const btnMode = document.getElementById('mode')
+    const darkThemeMq = window.matchMedia("(prefers-color-scheme: dark)")
+    if (darkThemeMq.matches) {
+      // Theme set to dark.
+      btnMode.innerHTML = `<i class="material-icons">dark_mode</i>`
+      document.documentElement.setAttribute('data-mode', 'dark');
+    } else {
+      // Theme set to light.
+      btnMode.innerHTML = `<i class="material-icons">light_mode</i>`
+      document.documentElement.setAttribute('data-mode', 'light');
+    }
+    
+    btnMode.addEventListener('click', () => {
+      if (btnMode.querySelector('i').innerText === 'dark_mode') {
+        btnMode.innerHTML = `<i class="material-icons">light_mode</i>`
+        document.documentElement.setAttribute('data-mode', 'light');
+      } else {
+        btnMode.innerHTML = `<i class="material-icons">dark_mode</i>`
+        document.documentElement.setAttribute('data-mode', 'dark');
+      }
+    })
   </script>
 </body>
 </html>
